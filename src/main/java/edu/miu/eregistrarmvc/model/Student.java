@@ -45,4 +45,15 @@ public class Student implements Serializable {
     @Column(nullable = false)
     private String isInternational;
 
+    public Student(String studentNumber, String firstName, String middleName,
+                   String lastName, double cgpa,
+                   LocalDate enrollmentDate, String isInternational) {
+        this.studentNumber = studentNumber;
+        this.firstName = firstName;
+        this.middleName = middleName;
+        this.lastName = lastName;
+        this.cgpa = cgpa;
+        this.enrollmentDate = enrollmentDate;
+        this.isInternational = isInternational;
+    }
 }
