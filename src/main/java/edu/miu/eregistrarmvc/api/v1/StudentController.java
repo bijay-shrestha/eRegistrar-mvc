@@ -31,6 +31,7 @@ public class StudentController {
     @GetMapping(value = "/list")
     public ModelAndView listStudents() {
         var students = studentService.getAllStudents();
+        System.out.println("Students :: " + students);
         var modelAndView = new ModelAndView();
         modelAndView.addObject("students", students);
         modelAndView.setViewName("secured/students/list");

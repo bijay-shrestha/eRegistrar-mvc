@@ -1,10 +1,68 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>eRegistrar Student Registration - Home</title>
+    <style>
+        table {
+            border: 1px solid;
+            border-collapse: collapse;
+        }
+
+        table th, table td {
+            border: 1px solid;
+            padding: 1em;
+        }
+    </style>
 </head>
 <body>
-<h1>Hi there</h1>
+<header th:replace="fragments/header :: header"></header>
+<main>
+    <h1>List of our Students</h1>
+    <div>
+        <p><a href="/eregistrar/students/new">Add New Student</a></p>
+    </div>
+    <table>
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Student Name</th>
+            <th>Student Number</th>
+            <th>Enrollment Date</th>
+            <th>Is International</th>
+            <th>CGPA</th>
+            <th colspan="2">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="student, counter : ${students}">
+            <th th:text="${counter.count}+${'.'}"></th>
+            <td th:if="${student.middleName.length == 0}">
+                <p>
+                    <span th:text="${student.firstName} + ${' '} + ${student.lastName}"></span>
+                </p>
+            </td>
+            <td th:if="${student.middleName.length != 0}">
+                <p>
+                    <span th:text="${student.firstName} + ${' '}+ ${student.middleName} + ${' '} + ${student.lastName}"></span>
+                </p>
+            </td>
+            <td th:text="${student.studentNumber}"></td>
+            <td th:text="${student.enrollmentDate}"></td>
+            <td th:text="${student.isInternational}"></td>
+            <td th:text="${student.cgpa}"></td>
+            <!--            <td th:if="${publisher.primaryAddress != null}">-->
+            <!--                <p>-->
+            <!--                    <span th:text="${publisher.primaryAddress.street}"></span><br>-->
+            <!--                    <span th:text="${publisher.primaryAddress.city}+${', '}+${publisher.primaryAddress.state}+${' '}+${publisher.primaryAddress.zipCode}"></span>-->
+            <!--                </p>-->
+            <!--            </td>-->
+            <!--            <td th:if="${publisher.primaryAddress == null}"></td>-->
+            <td><a th:href="@{'/eregistrar/students/edit/{studentId}'(studentId=${student.studentId})}">Edit</a></td>
+            <td><a th:href="@{'/eregistrar/students/delete/{studentId}'(studentId=${student.studentId})}">Delete</td>
+        </tr>
+        </tbody>
+    </table>
+</main>
 </body>
 </html>
