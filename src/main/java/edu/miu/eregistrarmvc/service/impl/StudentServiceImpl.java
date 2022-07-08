@@ -37,14 +37,14 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public List<Student> getAllStudents() {
-        var publishers = studentRepository.findAll(Sort.by("firstName"));
-        return publishers;
+        var students = studentRepository.findAll(Sort.by("firstName"));
+        return students;
     }
 
     @Override
     public Student getStudentById(Long studentId){
         return studentRepository.findById(studentId)
-                .orElseThrow(()-> new IllegalArgumentException("Publisher with ID " + studentId +  " Not Found"));
+                .orElseThrow(()-> new IllegalArgumentException("Student with ID " + studentId +  " Not Found"));
     }
 
     @Override

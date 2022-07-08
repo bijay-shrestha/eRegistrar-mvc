@@ -42,7 +42,7 @@ public class StudentController {
     public String displayNewPublisherForm(Model model) {
         var newStudent = new Student();
         model.addAttribute("student", newStudent);
-        return "/secured/student/new";
+        return "secured/students/new";
     }
 
     @PostMapping(value = {"/new"}) // PRG: Post-Redirect-Get
@@ -51,32 +51,32 @@ public class StudentController {
         if(bindingResult.hasErrors()) {
             model.addAttribute("student", student);
             model.addAttribute("errors", bindingResult.getAllErrors());
-            return "secured/student/new";
+            return "secured/students/new";
         }
         studentService.addNewStudent(student);
-        return "redirect:/eregistrar/student/list";
+        return "redirect:/eregistrar/students/list";
     }
 
     @GetMapping(value = "/edit/{studentId}")
-    public String editStudent(Model model, @PathVariable Long studentId) throws IllegalArgumentException {
+    public String displayEditStudentForm(Model model, @PathVariable Long studentId) throws IllegalArgumentException {
         var student = studentService.getStudentById(studentId);
         if (student != null) {
             model.addAttribute("student", student);
-            return "/secured/student/edit";
+            return "/secured/students/edit";
         }
-        return "redirect:/eregistrar/student/list";
+        return "redirect:/eregistrar/students/list";
     }
 
     @PostMapping(value = "/update")
-    public String updatePublisher(@Valid @ModelAttribute("publisher") Student student,
-                                  BindingResult bindingResult, Model model){
+    public String updateStudent(@Valid @ModelAttribute("student") Student student,
+                                BindingResult bindingResult, Model model){
         if(bindingResult.hasErrors()){
             model.addAttribute("student", student);
             model.addAttribute("errors", bindingResult.getAllErrors());
-            return "/secured/student/edit";
+            return "secured/student/edit";
         }
         studentService.updateStudent(student);
-        return "redirect:/eregistrar/student/list";
+        return "redirect:/eregistrar/students/list";
 
 
     }
@@ -84,7 +84,7 @@ public class StudentController {
     @GetMapping(value = "/delete/{studentId}")
     public String deleteStudent(@PathVariable Long studentId){
         studentService.deleteStudentById(studentId);
-        return "redirect:/eregistrar/student/list";
+        return "redirect:/eregistrar/students/list";
     }
 
 }

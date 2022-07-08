@@ -1,6 +1,7 @@
 package edu.miu.eregistrarmvc.model;
 
 import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -40,6 +41,7 @@ public class Student implements Serializable {
     private double cgpa;
 
     @Column(nullable = false)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate enrollmentDate;
 
     @Column(nullable = false)
