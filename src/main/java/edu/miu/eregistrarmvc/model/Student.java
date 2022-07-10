@@ -62,6 +62,8 @@ public class Student implements Serializable {
     @NotBlank(message = "Gender cannot be null or blank")
     private String gender;
 
+    @NotEmpty(message = "FPP Status cannot be empty")
+    @NotBlank(message = "Fpp status cannot be null or blank")
     @Column(columnDefinition="boolean default false")
     private boolean fpp=false;
 
