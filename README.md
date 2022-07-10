@@ -44,11 +44,9 @@ push to your github and submit its url to sakai.
 *//-- Enjoy --//*
 
 ## Screenshots
-### Add Student
+### 1. Add Student
 <img width="1512" alt="1" src="https://user-images.githubusercontent.com/7867129/178157474-40015914-3515-4875-a1fa-f0b094855391.png">
-
-### List Student
+### 2. List Student
 <img width="1512" alt="2" src="https://user-images.githubusercontent.com/7867129/178157476-b03d7943-a0da-4ac9-9534-d3eb2863fd36.png">
-
-### Update Student
+### 3. Update Student
 <img width="1512" alt="3" src="https://user-images.githubusercontent.com/7867129/178157477-cbce9978-ee22-4eec-8bd3-753fa0f2bd49.png">
