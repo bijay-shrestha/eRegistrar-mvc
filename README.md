@@ -52,3 +52,6 @@ push to your github and submit its url to sakai.
 
 ### 3. Update Student
 <img width="1512" alt="3" src="https://user-images.githubusercontent.com/7867129/178157477-cbce9978-ee22-4eec-8bd3-753fa0f2bd49.png">
+
+### 4. Validation
+<img width="1512" alt="validate-student" src="https://user-images.githubusercontent.com/7867129/178157771-ab70814b-6c41-4bb9-8c22-443784893643.png">
