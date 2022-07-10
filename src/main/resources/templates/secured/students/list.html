@@ -31,10 +31,12 @@
         <tr>
             <th>#</th>
             <th>Student Name</th>
+            <th>Gender</th>
             <th>Student Number</th>
             <th>Enrollment Date</th>
             <th>Is International</th>
             <th>CGPA</th>
+            <th>Is FPP</th>
             <th colspan="2">Actions</th>
         </tr>
         </thead>
@@ -51,10 +53,12 @@
                     <span th:text="${student.firstName} + ${' '}+ ${student.middleName} + ${' '} + ${student.lastName}"></span>
                 </p>
             </td>
+            <td th:text="${student.gender}"></td>
             <td th:text="${student.studentNumber}"></td>
             <td th:text="${student.enrollmentDate}"></td>
             <td th:text="${student.isInternational}"></td>
             <td th:text="${student.cgpa}"></td>
+            <td th:text="${student.fpp}? 'Yes': 'No'"></td>
             <td><a th:href="@{'/eregistrar/students/edit/{studentId}'(studentId=${student.studentId})}">Edit</a></td>
             <td><a th:href="@{'/eregistrar/students/delete/{studentId}'(studentId=${student.studentId})}">Delete</td>
         </tr>

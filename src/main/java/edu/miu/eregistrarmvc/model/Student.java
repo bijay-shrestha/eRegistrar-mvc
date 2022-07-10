@@ -57,9 +57,17 @@ public class Student implements Serializable {
     @Column(nullable = false)
     private String isInternational;
 
+    @NotNull
+    @NotEmpty(message = "Gender cannot be empty")
+    @NotBlank(message = "Gender cannot be null or blank")
+    private String gender;
+
+    @Column(columnDefinition="boolean default false")
+    private boolean fpp=false;
+
     public Student(String studentNumber, String firstName, String middleName,
                    String lastName, double cgpa,
-                   LocalDate enrollmentDate, String isInternational) {
+                   LocalDate enrollmentDate, String isInternational, String gender) {
         this.studentNumber = studentNumber;
         this.firstName = firstName;
         this.middleName = middleName;
@@ -67,5 +75,6 @@ public class Student implements Serializable {
         this.cgpa = cgpa;
         this.enrollmentDate = enrollmentDate;
         this.isInternational = isInternational;
+        this.gender = gender;
     }
 }

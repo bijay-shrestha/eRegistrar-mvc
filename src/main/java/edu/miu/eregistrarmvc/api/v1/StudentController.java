@@ -90,8 +90,8 @@ public class StudentController {
 
     @GetMapping(value = "/search")
     public String searchStudent(Model model, @RequestParam("search") String search) {
-        var student = studentService.searchStudent(search);
-        model.addAttribute("students", student);
+        var students = studentService.searchStudent(search);
+        model.addAttribute("students", students);
         return "secured/students/list";
     }
 

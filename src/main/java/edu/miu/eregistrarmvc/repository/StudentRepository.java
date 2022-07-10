@@ -20,5 +20,5 @@ public interface StudentRepository extends JpaRepository<Student, Long> {
             "s.middleName like %:searchParam% or " +
             "s.studentNumber like %:searchParam% or " +
             "s.isInternational like %:searchParam% ")
-    Optional<Student> findBySearchParam(String searchParam);
+    Optional<List<Student>> findBySearchParam(String searchParam);
 }

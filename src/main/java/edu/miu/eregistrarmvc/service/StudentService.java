@@ -18,7 +18,7 @@ public interface StudentService {
 
     Student getStudentById(Long studentId) throws IllegalArgumentException;
 
-    Student searchStudent(String firstName) throws IllegalArgumentException;
+    List<Student> searchStudent(String firstName) throws IllegalArgumentException;
 
     Student updateStudent(Student updatedStudent);
 
