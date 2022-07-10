@@ -67,8 +67,5 @@ public class ERegistrarMvcApplication implements CommandLineRunner {
 
         List<Student> students = studentService.addNewStudents(List.of(alex, dave, wayne, christiano, ryan));
 
-        students.forEach(System.out::println);
-
-
     }
 }

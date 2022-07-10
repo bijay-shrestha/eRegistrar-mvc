@@ -18,6 +18,10 @@
 <body>
 <header th:replace="fragments/header :: header"></header>
 <main>
+    <form method="get" th:action="@{/eregistrar/students/search}">
+        <input name="search" type="text" th:value="${searchParam}" >
+        <input type="submit" th:value="Search"/>
+    </form>
     <h1>List of our Students</h1>
     <div>
         <p><a href="/eregistrar/students/new">Add New Student</a></p>
@@ -51,13 +55,6 @@
             <td th:text="${student.enrollmentDate}"></td>
             <td th:text="${student.isInternational}"></td>
             <td th:text="${student.cgpa}"></td>
-            <!--            <td th:if="${publisher.primaryAddress != null}">-->
-            <!--                <p>-->
-            <!--                    <span th:text="${publisher.primaryAddress.street}"></span><br>-->
-            <!--                    <span th:text="${publisher.primaryAddress.city}+${', '}+${publisher.primaryAddress.state}+${' '}+${publisher.primaryAddress.zipCode}"></span>-->
-            <!--                </p>-->
-            <!--            </td>-->
-            <!--            <td th:if="${publisher.primaryAddress == null}"></td>-->
             <td><a th:href="@{'/eregistrar/students/edit/{studentId}'(studentId=${student.studentId})}">Edit</a></td>
             <td><a th:href="@{'/eregistrar/students/delete/{studentId}'(studentId=${student.studentId})}">Delete</td>
         </tr>

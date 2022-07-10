@@ -7,6 +7,9 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.time.LocalDate;
 
@@ -25,15 +28,22 @@ public class Student implements Serializable {
     @Id
     @GeneratedValue Long studentId;
 
+    @NotNull
+    @NotEmpty(message = "Student number cannot be empty")
+    @NotBlank(message = "Student number cannot be null or blank")
     @Column(nullable = false)
     private String studentNumber;
 
+    @NotEmpty(message = "Student Firstname cannot be empty")
+    @NotBlank(message = "Student Firstname cannot be null or blank")
     @Column(nullable = false)
     private String firstName;
 
     @Column(nullable = true)
     private String middleName;
 
+    @NotEmpty(message = "Student Lastname cannot be empty")
+    @NotBlank(message = "Student Lastname cannot be null or blank")
     @Column(nullable = false)
     private String lastName;
 

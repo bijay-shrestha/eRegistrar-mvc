@@ -48,6 +48,12 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
+    public Student searchStudent(String searchParam){
+        return studentRepository.findBySearchParam(searchParam)
+                .orElseThrow(()-> new IllegalArgumentException("Student with Firstname " + searchParam +  " Not Found"));
+    }
+
+    @Override
     public Student updateStudent(Student updatedStudent) {
         return studentRepository.save(updatedStudent);
     }

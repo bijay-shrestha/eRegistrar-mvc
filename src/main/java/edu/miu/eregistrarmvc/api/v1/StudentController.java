@@ -31,9 +31,11 @@ public class StudentController {
     @GetMapping(value = "/list")
     public ModelAndView listStudents() {
         var students = studentService.getAllStudents();
+        var searchParam="";
         System.out.println("Students :: " + students);
         var modelAndView = new ModelAndView();
         modelAndView.addObject("students", students);
+        modelAndView.addObject("searchParam", searchParam);
         modelAndView.setViewName("secured/students/list");
         return modelAndView;
     }
@@ -78,13 +80,19 @@ public class StudentController {
         studentService.updateStudent(student);
         return "redirect:/eregistrar/students/list";
 
-
     }
 
     @GetMapping(value = "/delete/{studentId}")
     public String deleteStudent(@PathVariable Long studentId){
         studentService.deleteStudentById(studentId);
         return "redirect:/eregistrar/students/list";
+    }
+
+    @GetMapping(value = "/search")
+    public String searchStudent(Model model, @RequestParam("search") String search) {
+        var student = studentService.searchStudent(search);
+        model.addAttribute("students", student);
+        return "secured/students/list";
     }
 
 }
