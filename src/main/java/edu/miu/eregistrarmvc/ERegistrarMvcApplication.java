@@ -32,7 +32,8 @@ public class ERegistrarMvcApplication implements CommandLineRunner {
                 4.0,
                 LocalDate.of(2022, 1, 1),
                 "Yes",
-                "Male");
+                "Male",
+                true);
         Student dave = new Student("611113",
                 "Joe",
                 "",
@@ -40,7 +41,8 @@ public class ERegistrarMvcApplication implements CommandLineRunner {
                 3.9,
                 LocalDate.of(2021, 1, 1),
                 "No",
-                "Male");
+                "Male",
+                false);
 
         Student wayne = new Student("611114",
                 "Wayne",
@@ -49,7 +51,8 @@ public class ERegistrarMvcApplication implements CommandLineRunner {
                 3.8,
                 LocalDate.of(2020, 2, 11),
                 "No",
-                "Male");
+                "Male",
+                false);
 
         Student christiano = new Student("611115",
                 "Christiano",
@@ -58,7 +61,8 @@ public class ERegistrarMvcApplication implements CommandLineRunner {
                 4.0,
                 LocalDate.of(2020, 12, 12),
                 "Yes",
-                "Male");
+                "Male",
+                true);
 
         Student ryan = new Student("611116",
                 "Ryan",
@@ -67,7 +71,8 @@ public class ERegistrarMvcApplication implements CommandLineRunner {
                 2.0,
                 LocalDate.of(2021, 7, 7),
                 "No",
-                "Male");
+                "Male",
+                false);
 
 
         List<Student> students = studentService.addNewStudents(List.of(alex, dave, wayne, christiano, ryan));

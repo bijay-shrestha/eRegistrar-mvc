@@ -62,14 +62,12 @@ public class Student implements Serializable {
     @NotBlank(message = "Gender cannot be null or blank")
     private String gender;
 
-    @NotEmpty(message = "FPP Status cannot be empty")
-    @NotBlank(message = "Fpp status cannot be null or blank")
     @Column(columnDefinition="boolean default false")
     private boolean fpp=false;
 
     public Student(String studentNumber, String firstName, String middleName,
                    String lastName, double cgpa,
-                   LocalDate enrollmentDate, String isInternational, String gender) {
+                   LocalDate enrollmentDate, String isInternational, String gender, boolean fpp) {
         this.studentNumber = studentNumber;
         this.firstName = firstName;
         this.middleName = middleName;
@@ -78,5 +76,6 @@ public class Student implements Serializable {
         this.enrollmentDate = enrollmentDate;
         this.isInternational = isInternational;
         this.gender = gender;
+        this.fpp = fpp;
     }
 }
