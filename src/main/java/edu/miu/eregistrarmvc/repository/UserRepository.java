@@ -1,6 +1,6 @@
 package edu.miu.eregistrarmvc.repository;
 
-import edu.miu.eregistrarmvc.model.Student;
+import edu.miu.eregistrarmvc.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -13,12 +13,15 @@ import java.util.Optional;
  * @project eRegistrar-mvc
  */
 @Repository
-public interface StudentRepository extends JpaRepository<Student, Long> {
+public interface UserRepository extends JpaRepository<User, Long> {
 
-    @Query(value = "select s from Student s where s.firstName like %:searchParam% or " +
+    @Query(value = "select s from User s where s.firstName like %:searchParam% or " +
             "s.lastName like %:searchParam% or " +
             "s.middleName like %:searchParam% or " +
-            "s.studentNumber like %:searchParam% or " +
+            "s.userUniqueID like %:searchParam% or " +
             "s.isInternational like %:searchParam% ")
-    Optional<List<Student>> findBySearchParam(String searchParam);
+    Optional<List<User>> findBySearchParam(String searchParam);
+
+    @Query(value = "select u from User u where u.username=:username or u.email=:username")
+    Optional<User> findByUsername(String username);
 }
