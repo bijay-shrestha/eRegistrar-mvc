@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>eRegistrar Student Registration - Home</title>
+    <style>
+        table {
+            border: 1px solid;
+            border-collapse: collapse;
+        }
+
+        table th, table td {
+            border: 1px solid;
+            padding: 1em;
+        }
+    </style>
+</head>
+<body>
+<header th:replace="fragments/header :: header"></header>
+<main>
+    <form method="get" th:action="@{/eregistrar/users/search}">
+        <input name="search" type="text" th:value="${searchParam}" >
+        <input type="submit" th:value="Search"/>
+    </form>
+    <h1>List of our Students</h1>
+    <div>
+        <p><a href="/eregistrar/users/new">Add New Student</a></p>
+    </div>
+    <table>
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Unique Number</th>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Gender</th>
+            <th>Enrollment Date</th>
+            <th>Is International</th>
+            <th colspan="2">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="user, counter : ${users}">
+            <th th:text="${counter.count}+${'.'}"></th>
+            <td th:if="${user.middleName.length == 0}">
+                <p>
+                    <span th:text="${user.firstName} + ${' '} + ${user.lastName}"></span>
+                </p>
+            </td>
+            <td th:if="${user.middleName.length != 0}">
+                <p>
+                    <span th:text="${user.firstName} + ${' '}+ ${user.middleName} + ${' '} + ${user.lastName}"></span>
+                </p>
+            </td>
+            <td th:text="${user.userUniqueID}"></td>
+            <td th:text="${user.username}"></td>
+            <td th:text="${user.email}"></td>
+            <td th:text="${user.gender}"></td>
+            <td th:text="${user.enrollmentDate}"></td>
+            <td th:text="${user.isInternational}"></td>
+            <td th:text="${user.cgpa}"></td>
+            <td th:text="${user.fpp}? 'Yes': 'No'"></td>
+            <td><a th:href="@{'/eregistrar/users/edit/{userId}'(studentId=${user.userId})}">Edit</a></td>
+            <td><a th:href="@{'/eregistrar/users/delete/{userId}'(studentId=${user.userId})}">Delete</td>
+        </tr>
+        </tbody>
+    </table>
+</main>
+</body>
+</html>

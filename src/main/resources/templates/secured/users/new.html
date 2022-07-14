@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>eRegistrar Student Registration - Edit</title>
+    <title>eRegistrar Student Registration - New Student</title>
     <style>
         a.std-lnk-btn {
             text-decoration:none;color: #000000;border: 1px solid #000000;padding: 0.20em;background-color: #efefef;
@@ -15,59 +15,73 @@
 <body>
 <header th:replace="fragments/header :: header"></header>
 <main>
-    <h1>Update Student Form</h1>
+    <h1>New Student Form</h1>
     <div style="border: 1px solid;padding: 1em;">
         <div>
             Fields marked with asterisk (*) are required.
         </div>
-        <form method="post" action="/eregistrar/students/update" th:object="${student}">
+        <form method="post" action="/eregistrar/users/new" th:object="${user}">
             <fieldset>
-                <input name="studentId" type="hidden" th:value="${student.studentId}"/>
                 <div>
                     <label><span style="font-weight: bold">First Name*</span></label>
                 </div>
                 <div>
                     <div><span th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}" style="color:red;"></span></div>
-                    <input name="firstName" type="text" th:value="${student.firstName}" autofocus>
+                    <input name="firstName" type="text" th:value="${user.firstName}" autofocus>
                 </div>
                 <div>
-                    <label><span style="font-weight: bold">Middle Name</span></label>
+                    <label><span style="font-weight: bold">Middle Naame</span></label>
                 </div>
                 <div>
-                    <input name="middleName" type="text" th:field="${student.middleName}">
+                    <input name="middleName" type="text" th:field="${user.middleName}">
                 </div>
                 <div>
                     <label><span style="font-weight: bold">Last Name*</span></label>
                 </div>
                 <div>
                     <div><span th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}" style="color:red;"></span></div>
-                    <input name="lastName" type="text" th:value="${student.lastName}" autofocus>
+                    <input name="lastName" type="text" th:value="${user.lastName}" autofocus>
                 </div>
                 <div>
-                    <label><span style="font-weight: bold">Student Number</span></label>
-                </div>
-                <div><span th:if="${#fields.hasErrors('studentNumber')}" th:errors="*{studentNumber}" style="color:red;"></span></div>
-                <div>
-                    <input name="studentNumber" type="text" th:field="${student.studentNumber}">
+                    <label><span style="font-weight: bold">Username*</span></label>
                 </div>
                 <div>
-                    <label><span style="font-weight: bold">Enrollment Date</span></label>
+                    <div><span th:if="${#fields.hasErrors('username')}" th:errors="*{username}" style="color:red;"></span></div>
+                    <input name="username" type="text" th:value="${user.username}" autofocus>
+                </div>
+                <div>
+                    <label><span style="font-weight: bold">Email*</span></label>
+                </div>
+                <div>
+                    <div><span th:if="${#fields.hasErrors('email')}" th:errors="*{email}" style="color:red;"></span></div>
+                    <input name="email" type="text" th:value="${user.email}" autofocus>
+                </div>
+                <div>
+                    <label><span style="font-weight: bold">Password*</span></label>
+                </div>
+                <div>
+                    <div><span th:if="${#fields.hasErrors('password')}" th:errors="*{password}" style="color:red;"></span></div>
+                    <input name="password" type="password" th:value="${user.password}" autofocus>
+                </div>
+                <div>
+                    <label><span style="font-weight: bold">Unique Number*</span></label>
+                </div>
+                <div>
+                    <div><span th:if="${#fields.hasErrors('uniqueNumber')}" th:errors="*{userUniqueID}" style="color:red;"></span></div>
+                    <input name="uniqueNumber" type="text" th:field="${user.userUniqueID}">
+                </div>
+                <div>
+                    <label><span style="font-weight: bold">Enrollment Date*</span></label>
                 </div>
                 <div>
                     <div><span th:if="${#fields.hasErrors('enrollmentDate')}" th:errors="*{enrollmentDate}" style="color:red;"></span></div>
-                    <input name="enrollmentDate" type="date" th:field="${student.enrollmentDate}">
+                    <input name="enrollmentDate" type="date" th:field="${user.enrollmentDate}">
                 </div>
                 <div>
-                    <label><span style="font-weight: bold">CGPA</span></label>
-                </div>
-                <div>
-                    <input name="cgpa" type="text" th:field="${student.cgpa}">
-                </div>
-                <div>
-                    <label><span style="font-weight: bold">Is International?</span></label>
+                    <label><span style="font-weight: bold">Is International? * </span></label>
                 </div>
                 <div><span th:if="${#fields.hasErrors('isInternational')}" th:errors="*{isInternational}" style="color:red;"></span></div>
-                <select name="isInternational" th:field="${student.isInternational}">
+                <select name="isInternational" th:field="${user.isInternational}">
                     <option th:value="'Yes'" th:text="Yes"></option>
                     <option th:value="'No'" th:text="No"></option>
                 </select>
@@ -87,18 +101,11 @@
                     <input type="radio" th:field="*{gender}" id="other" value="Other">
                     <label for="other">Other</label>
                 </div>
-                <div>
-                    <label><span style="font-weight: bold">Is FPP Student?</span></label>
-                </div>
-                <input  type="checkbox" th:field="*{fpp}" id="isFPP">
-                <label  for="isFPP">
-                    FPP
-                </label>
             </fieldset>
             <div style="margin-top: 1em;">
-                <a class="std-lnk-btn" href="/eregistrar/students/list">Cancel</a>
+                <a class="std-lnk-btn" href="/eregistrar/users/list">Cancel</a>
                 <input class="std-btn" type="reset" value="Reset">
-                <input class="std-btn" type="submit" value="Edit Student">
+                <input class="std-btn" type="submit" value="Add Student">
             </div>
         </form>
     </div>

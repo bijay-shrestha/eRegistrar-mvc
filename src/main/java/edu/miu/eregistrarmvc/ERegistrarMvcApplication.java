@@ -1,22 +1,30 @@
 package edu.miu.eregistrarmvc;
 
-import edu.miu.eregistrarmvc.model.Student;
-import edu.miu.eregistrarmvc.service.StudentService;
+import edu.miu.eregistrarmvc.model.Role;
+import edu.miu.eregistrarmvc.model.User;
+import edu.miu.eregistrarmvc.service.UserRoleService;
+import edu.miu.eregistrarmvc.service.UserService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
-import javax.annotation.Resource;
 import java.time.LocalDate;
 import java.util.List;
 
 @SpringBootApplication
 public class ERegistrarMvcApplication implements CommandLineRunner {
 
-    private final StudentService studentService;
+    private final UserService userService;
+    private final UserRoleService userRoleService;
+    private final PasswordEncoder passwordEncoder;
 
-    public ERegistrarMvcApplication(StudentService studentService) {
-        this.studentService = studentService;
+    public ERegistrarMvcApplication(UserService userService,
+                                    UserRoleService userRoleService,
+                                    PasswordEncoder passwordEncoder) {
+        this.userService = userService;
+        this.userRoleService = userRoleService;
+        this.passwordEncoder = passwordEncoder;
     }
 
     public static void main(String[] args) {
@@ -25,57 +33,49 @@ public class ERegistrarMvcApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        Student alex = new Student("611112",
-                "Robert",
+        Role student = new Role("STUDENT", "This is a student role");
+        student = userRoleService.saveUserRole(student);
+        Role admin = new Role("ADMIN", "This is an admin role");
+        admin = userRoleService.saveUserRole(admin);
+        Role registrar = new Role("REGISTRAR", "This is a registrar role");
+        registrar = userRoleService.saveUserRole(registrar);
+
+        User anna = new User("611112",
+                "Anna",
                 "Benjamin",
                 "Martin",
-                4.0,
+                "ana.admin@eregistrar.com",
+                "ana",
+                passwordEncoder.encode("ana"),
                 LocalDate.of(2022, 1, 1),
                 "Yes",
                 "Male",
-                true);
-        Student dave = new Student("611113",
-                "Joe",
+                List.of(admin));
+        User bob = new User("611113",
+                "Bob",
                 "",
                 "Rogan",
-                3.9,
+                "bob.registrar@eregistrar.com",
+                "bob",
+                passwordEncoder.encode("bob"),
                 LocalDate.of(2021, 1, 1),
-                "No",
-                "Male",
-                false);
-
-        Student wayne = new Student("611114",
-                "Wayne",
-                "",
-                "Rooney",
-                3.8,
-                LocalDate.of(2020, 2, 11),
-                "No",
-                "Male",
-                false);
-
-        Student christiano = new Student("611115",
-                "Christiano",
-                "",
-                "Ronaldo",
-                4.0,
-                LocalDate.of(2020, 12, 12),
                 "Yes",
                 "Male",
-                true);
+                List.of(registrar));
 
-        Student ryan = new Student("611116",
-                "Ryan",
-                "Mathew",
-                "Holiday",
-                2.0,
-                LocalDate.of(2021, 7, 7),
-                "No",
+        User carlos = new User("611113",
+                "Carlos",
+                "",
+                "Rogan",
+                "carlos.student@eregistrar.com",
+                "carlos",
+                passwordEncoder.encode("carlos"),
+                LocalDate.of(2021, 1, 1),
+                "Yes",
                 "Male",
-                false);
+                List.of(student));
 
-
-        List<Student> students = studentService.addNewStudents(List.of(alex, dave, wayne, christiano, ryan));
+        List<User> users = userService.addNewStudents(List.of(anna, bob, carlos));
 
     }
 }
